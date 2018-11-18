@@ -119,6 +119,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if($user){
+            $copy_user = $user;
+            return response()->json(['user'=>$user,'eliminado'=>$user->delete()]);
+        }
+        return response()->json(['error'=>'No se encontro el usuario']);
     }
 }
